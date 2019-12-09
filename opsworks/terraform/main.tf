@@ -1,0 +1,3 @@
+module "oppsworks" {
+  source = "./infra"
+}

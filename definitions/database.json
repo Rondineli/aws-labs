@@ -1,0 +1,14 @@
+{
+    "TableName": "aws_lab",
+    "KeySchema": [
+      { "AttributeName": "LockId", "KeyType": "HASH" }
+    ],
+    "AttributeDefinitions": [
+      { "AttributeName": "LockId", "AttributeType": "S" }
+    ],
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    }
+}
+
