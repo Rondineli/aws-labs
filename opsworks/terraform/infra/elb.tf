@@ -1,5 +1,5 @@
 resource "aws_elb" "opsworks-flask-app-elb" {
-  name = "aws_elb_opsworks_flask_app"
+  name = "aws-elb-opsworks-flask-app"
 
   listener {
     instance_port     = 5000
@@ -21,10 +21,10 @@ resource "aws_elb" "opsworks-flask-app-elb" {
   connection_draining         = true
   connection_draining_timeout = 400
 
-  subnets         = [module.networks.aws_subnet]
-  security_groups = [aws_security_group.opsworks-flask-app-elb.id]
+  subnets         = module.networks.aws_subnet
+  security_groups = [aws_security_group.allow_http_elb.id]
 
-  tags {
+  tags = {
     Name = "aws_elb_opsworks_flask_app"
   }
 }

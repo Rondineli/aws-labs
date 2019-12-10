@@ -1,13 +1,13 @@
 resource "aws_security_group" "allow_http_elb" {
-  name        = "allow_http"
+  name        = "allow_http_for_opsworks_elb"
   description = "Allow HTTP inbound traffic"
-  vpc_id      = "aws_vpc.main.id"
+  vpc_id      = module.networks.aws_vpc
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = "0.0.0.0/0"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -20,9 +20,9 @@ resource "aws_security_group" "allow_http_elb" {
 
 
 resource "aws_security_group" "allow_http_instance" {
-  name        = "allow_http"
+  name        = "allow_http_for_opsworks_instance"
   description = "Allow HTTP inbound traffic"
-  vpc_id      = "aws_vpc.main.id"
+  vpc_id      = module.networks.aws_vpc
 
   ingress {
     from_port   = 5000

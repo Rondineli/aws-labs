@@ -6,6 +6,10 @@ variable "enable_dns_hostnames" {
 	default = true
 }
 
+variable "region" {
+	default = "us-west-2"
+}
+
 variable "region_number" {
   default = {
     "0" = "a"

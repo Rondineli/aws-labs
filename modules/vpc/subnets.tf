@@ -3,6 +3,7 @@ resource "aws_subnet" "main_subnets" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.${count.index}.0/24"
   availability_zone = "${var.region}${var.region_number[count.index]}"
+  map_public_ip_on_launch = true
 
   tags = {
     "Name" = "${var.module_name}_dubnet_${count.index}_vpc"
@@ -10,9 +11,9 @@ resource "aws_subnet" "main_subnets" {
 }
 
 resource "aws_internet_gateway" "igw_subnet" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
 
-  tags {
+  tags = {
     Name = "eks-poc"
   }
 }
