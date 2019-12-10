@@ -42,6 +42,8 @@ resource "aws_opsworks_custom_layer" "custlayer" {
   elastic_load_balancer = aws_elb.opsworks-flask-app-elb.name
   drain_elb_on_shutdown = true
 
+  custom_security_group_ids = [aws_security_group.allow_http_instance.id]
+  
   custom_configure_recipes = ["flask_app::master"]
   custom_deploy_recipes = ["flask_app::master"]
   custom_setup_recipes = ["flask_app::master"] 
