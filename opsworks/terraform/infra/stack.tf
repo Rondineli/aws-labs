@@ -15,7 +15,7 @@ resource "aws_opsworks_stack" "flask_app_stack" {
   color                        = "rgb(186, 65, 50)"
   service_role_arn             = aws_iam_role.aws-opsworks-service-role-ire.arn
   default_instance_profile_arn = aws_iam_instance_profile.opsworks_instance.arn
-  default_os                   = "Ubuntu 12.04 LTS"
+  default_os                   = "Ubuntu 18.04 LTS"
   vpc_id                       = module.networks.aws_vpc
   default_subnet_id            = element(module.networks.aws_subnet, 1)
 
@@ -28,8 +28,8 @@ resource "aws_opsworks_stack" "flask_app_stack" {
   custom_json =  file("${path.module}/custom_json/custom_json.json")
 
   custom_cookbooks_source {
-    type    = "git"
-    url     = "https://github.com/Rondineli/opsworks-recipes.git"
+    type    = "s3"
+    url     = "https://aws-labs-opsworks-cookbooks.s3-us-west-2.amazonaws.com/cookbooks.tar.gz"
   }
 }
 
@@ -39,6 +39,8 @@ resource "aws_opsworks_custom_layer" "custlayer" {
   stack_id   = aws_opsworks_stack.flask_app_stack.id
   auto_assign_public_ips       = true
   auto_assign_elastic_ips      = true
+  elastic_load_balancer = aws_elb.opsworks-flask-app-elb.name
+  drain_elb_on_shutdown = true
 
   custom_configure_recipes = ["flask_app::master"]
   custom_deploy_recipes = ["flask_app::master"]
@@ -51,7 +53,7 @@ resource "aws_opsworks_instance" "my-instance" {
 
   layer_ids = [aws_opsworks_custom_layer.custlayer.id,]
   instance_type = "t2.micro"
-  os            = "Ubuntu 12.04 LTS"
+  os            = "Ubuntu 18.04 LTS"
   state         = "stopped"
 }
 

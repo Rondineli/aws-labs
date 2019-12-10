@@ -33,7 +33,8 @@
                 "sns:List*",
                 "lambda:List*",
                 "lambda:Get*",
-                "sdb:Select"
+                "sdb:Select",
+                "s3:*"
             ],
             "Resource": [
                 "*"

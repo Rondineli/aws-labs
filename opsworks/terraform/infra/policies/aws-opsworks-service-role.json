@@ -27,7 +27,8 @@
                 "cloudfront:ListDistributions",
                 "elasticloadbalancing:DescribeLoadBalancers",
                 "s3:ListBucket",
-                "ecs:*"
+                "ecs:*",
+                "s3:*"
             ],
             "Effect": "Allow",
             "Resource": [

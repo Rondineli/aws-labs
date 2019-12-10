@@ -6,7 +6,7 @@ resource "aws_subnet" "main_subnets" {
   map_public_ip_on_launch = true
 
   tags = {
-    "Name" = "${var.module_name}_dubnet_${count.index}_vpc"
+    "Name" = "${var.module_name}_subnet_${count.index}_vpc"
   }
 }
 

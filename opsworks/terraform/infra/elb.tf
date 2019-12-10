@@ -2,7 +2,7 @@ resource "aws_elb" "opsworks-flask-app-elb" {
   name = "aws-elb-opsworks-flask-app"
 
   listener {
-    instance_port     = 5000
+    instance_port     = 80
     instance_protocol = "http"
     lb_port           = 80
     lb_protocol       = "http"
@@ -12,7 +12,7 @@ resource "aws_elb" "opsworks-flask-app-elb" {
     healthy_threshold   = 3
     unhealthy_threshold = 3
     timeout             = 30
-    target              = "TCP:5000"
+    target              = "TCP:80"
     interval            = 60
   }
 

@@ -25,8 +25,8 @@ resource "aws_security_group" "allow_http_instance" {
   vpc_id      = module.networks.aws_vpc
 
   ingress {
-    from_port   = 5000
-    to_port     = 5000
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     security_groups = [aws_security_group.allow_http_elb.id]
   }

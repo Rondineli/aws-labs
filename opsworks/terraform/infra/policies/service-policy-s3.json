@@ -5,11 +5,10 @@
             "Sid": "Stmt1470397207000",
             "Effect": "Allow",
             "Action": [
-                "s3:GetObject",
-                "s3:List*"
+                "s3:*"
             ],
             "Resource": [
-                "arn:aws:s3:::bucketnames*"
+                "*"
             ]
         }
     ]
