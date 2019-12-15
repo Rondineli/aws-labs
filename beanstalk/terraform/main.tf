@@ -1,0 +1,3 @@
+module "beanstalk" {
+  source = "./infra"
+}

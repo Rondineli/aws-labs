@@ -1,0 +1,18 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1470397207001",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Principal": {
+               "Service": "s3.amazonaws.com"
+            },
+            "Resource": [
+                "arn:aws:s3:::beanstalk-eb-loadbalancer-logs/*"
+            ]
+        }
+    ]
+}
